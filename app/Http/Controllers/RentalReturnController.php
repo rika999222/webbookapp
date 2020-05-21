@@ -12,7 +12,7 @@ class RentalReturnController extends Controller
 {
   public function index(Request $request)
   {
-    return view('returns.returns', ['msg'=>'資料IDを入力下さい。']);
+    return view('returns.returns', ['msg'=>'資料IDを入力して下さい。']);
   }
   public function post(Request $request)
   {
@@ -22,7 +22,7 @@ class RentalReturnController extends Controller
     ];
 
    $messages = [
-     'catalog_id.required' => '資料IDを入力して下さい。',
+     'catalog_id.required' => '資料IDは必ず入力して下さい。',
    ];
    $validator = Validator::make($request->all(), $rules,
    $messages);
@@ -48,7 +48,10 @@ class RentalReturnController extends Controller
    ->withErrors($validator)
    ->withInput();
    }
-
+   //貸出台帳テーブルへ返却日（今日の日付）を自動で入力する
+   $rental_item = Rental::where('catalog_id', $request->catalog_id)->whereNull('rental_returndate');
+   $param = ['rental_returndate' => date("Y/m/d")];
+     $data = $rental_item->update($param);
    //処理完了
     return view('returns.return_complete');
 

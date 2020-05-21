@@ -15,7 +15,6 @@
    @csrf
    <tr><th>資料ID </th><td><input type="text"
      name="catalog_id"></td></tr>
-     <input type="button" value="＋">
     <input type="submit" value="返却">
   </form>
 @endsection
