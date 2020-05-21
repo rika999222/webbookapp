@@ -1,6 +1,13 @@
 @extends('layouts.form')
+@section('title', '返却画面')
 @section('content')
 @error('catalog_id')
+<p>{{$message}}</p>
+@enderror
+@error('no_rental')
+<p>{{$message}}</p>
+@enderror
+@error('no_catalog')
 <p>{{$message}}</p>
 @enderror
 <p>{{$msg}}</p>

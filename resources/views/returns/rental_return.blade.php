@@ -3,6 +3,9 @@
 @error('catalog_id')
 <p>{{$message}}</p>
 @enderror
+@error('no_rental')
+<p>abc</p>
+@enderror
 <p>{{$msg}}</p>
   <form method="post" action="/return_complete">
    @csrf
@@ -21,5 +24,5 @@
 </form>
 @if (isset($item))
 <table>
-  
+
 </table>
