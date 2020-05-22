@@ -18,11 +18,12 @@ class RentalReturnController extends Controller
   {
     //カタログIDが入力されているかチェック
     $rules = [
-      'catalog_id' => 'required',
+      'catalog_id' => 'required|integer',
     ];
 
    $messages = [
      'catalog_id.required' => '資料IDは必ず入力して下さい。',
+      'catalog_id.integer' => '資料IDには数字を入力してください。',
    ];
    $validator = Validator::make($request->all(), $rules,
    $messages);
@@ -41,7 +42,8 @@ class RentalReturnController extends Controller
     ->withInput();
   }
    //貸出台帳にカタログIDが存在するかチェック
-   $item = Rental::where('catalog_id', $request->catalog_id)->whereNull('rental_returndate')->first();
+   $item = Rental::where('catalog_id', $request->catalog_id)->whereNull('rental_returndate')->orderBy('rental_id', 'desc')->first();
+   // $item = DB::table('rentals')->where('catalog_id', $request->catalog_id)->whereNull('rental_returndate')->first();
    if ($item === NULL) {
    $validator->errors()->add('no_rental', 'この資料は貸し出されていません。');
    return redirect('/returns')
