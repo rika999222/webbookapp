@@ -19,9 +19,7 @@ Route::get('/', function () {
 Route::get('/after_login_top', function(){
   return view('after_login_top');
 });
-Route::get('/member_search', function (){
-  return view('member_search');
-});
+Route::get('/member_search', 'MemberController@search_member');
 Route::get('/member_search_result', function (){
   return view('member_search_result');
 });

@@ -1,7 +1,8 @@
+<!-- おそらく使っていない -->
 @extends('layouts.form')
 @section('content')
 @error('catalog_id')
-<p>{{$message}}</p>
+<span class="errorMsg">{{$message}}</span>
 @enderror
 @error('no_rental')
 <p>abc</p>

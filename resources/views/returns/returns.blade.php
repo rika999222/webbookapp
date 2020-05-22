@@ -2,13 +2,13 @@
 @section('title', '返却画面')
 @section('content')
 @error('catalog_id')
-<p>{{$message}}</p>
+<span class="errorMsg">{{$message}}</span>
 @enderror
 @error('no_rental')
-<p>{{$message}}</p>
+<span class="errorMsg">{{$message}}</span>
 @enderror
 @error('no_catalog')
-<p>{{$message}}</p>
+<span class="errorMsg">{{$message}}</span>
 @enderror
 <p>{{$msg}}</p>
   <form method="post" action="/return_complete">
