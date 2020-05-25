@@ -34,10 +34,9 @@ class MemberController extends Controller
        ->withInput();
      }
      //会員テーブルにメールアドレスが存在するかチェック
-      // $item = Document::where('user_email', $request->user_email)->first();
       $user_email = $request->user_email;
       $item = DB::table('members')->where('user_email', $user_email)->first();
-      if ($item === NULL) {
+      if ($item === NULL||$item->user_deleteday !== NULL) {
         $validator->errors()->add('no_user_email', 'このメールアドレスは存在しません。');
         return redirect('/member_search')
         ->withErrors($validator)
